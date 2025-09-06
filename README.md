@@ -1,0 +1,3 @@
+# GuildService
+
+[PLACEHOLDER]
