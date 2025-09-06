@@ -8,7 +8,7 @@ export type GuildService = {
 	
 	CreateGuild: (player: Player, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly") -> string?,
 	DeleteGuild: (player: Player, guildId: string) -> boolean,
-	ModifyGuild: (guildId: string, player: Player, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly") -> string?,
+	ModifyGuild: (player: Player, guildId: string, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly") -> string?,
 	TransferOwnership: (currentLeader: Player, newLeader: Player, guildId: string) -> boolean,
 	
 	-- // Guild data operations

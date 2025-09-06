@@ -115,14 +115,14 @@ function GuildService.CreateGuild(player: Player, guildName: string, guildTag: s
 end
 
 -- ModifyGuild(): Modifies a created guild
--- @param guildId: The guild ID
 -- @param player: The player that wants to modify it
+-- @param guildId: The guild ID
 -- @param guildName: The name of the guild (Less than 50 Characters)
 -- @param guildTag: A shortened version of the guild name (Less than 5 Characters)
 -- @param description: A short description of the guild (Less than 255 Characters)
 -- @param guildType: "Public" | "InviteOnly"
 -- @return string?: The guild ID
-function GuildService.ModifyGuild(guildId: string, player: Player, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly"): string?
+function GuildService.ModifyGuild(player: Player, guildId: string, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly"): string?
 	assert(player and player.UserId, "Invalid player")
 	assert(#guildName > 0 and #guildName <= 50, "Guild name must be 1-50 characters")
 	assert(#guildTag > 0 and #guildTag <= 5, "Guild tag must be 1-5 characters")

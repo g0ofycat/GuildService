@@ -21,7 +21,7 @@ end
 ```lua
 local GuildService = require(path.to.GuildService)
 
-GuildService.ModifyGuild(guildId, player, "New Knights", "NK", "Updated description", "InviteOnly")
+GuildService.ModifyGuild(player, guildId, "New Knights", "NK", "Updated description", "InviteOnly")
 ```
 
 3. **Deleting a Guild**
@@ -42,19 +42,7 @@ local GuildService = require(path.to.GuildService)
 GuildService.TransferOwnership(currentLeader, newLeader, guildId)
 ```
 
-5. **Transferring Guild Ownership**
-
-```lua
-local GuildService = require(path.to.GuildService)
-
-GuildService.LoadGuild(guildId)
-
-local data = GuildService.SerializeGuild(guildId)
-
-GuildService.SaveGuild(guildId)
-```
-
-6. **Transferring Guild Ownership**
+5. **Checking Player Membership**
 
 ```lua
 local GuildService = require(path.to.GuildService)
@@ -66,7 +54,7 @@ local isMember = GuildService.CheckPlayerInGuild(guild, player)
 print(player.Name, "is member?", isMember)
 ```
 
-7. **Getting Player’s Guild**
+6. **Getting Player’s Guild**
 
 ```lua
 local GuildService = require(path.to.GuildService)
@@ -78,7 +66,7 @@ if playerGuildId then
 end
 ```
 
-8. **Kicking or Leaving a Guild**
+7. **Kicking or Leaving a Guild**
 
 ```lua
 local GuildService = require(path.to.GuildService)
@@ -88,7 +76,7 @@ GuildService.KickPlayer(guildId, guildLeader, memberToKick)
 GuildService.LeaveGuild(player)
 ```
 
-9. **Joining a Guild (AcceptJoinRequest and RejectJoinRequest is for 'InviteOnly' Guilds)**
+8. **Joining a Guild (AcceptJoinRequest and RejectJoinRequest is for 'InviteOnly' Guilds)**
 
 ```lua
 local GuildService = require(path.to.GuildService)
@@ -102,7 +90,7 @@ GuildService.RejectJoinRequest(guildLeader, player, guildId)
 GuildService.CancelJoinRequest(player, guildId)
 ```
 
-10. **Getting Guild Info and Members**
+9. **Getting Guild Info and Members**
 
 ```lua
 local GuildService = require(path.to.GuildService)
@@ -116,7 +104,7 @@ print("Guild Info:", guildInfo)
 print("Members:", members)
 ```
 
-11. **Utility Functions**
+10. **Utility Functions**
 
 ```lua
 local GuildService = require(path.to.GuildService)
@@ -137,7 +125,7 @@ export type GuildService = {
 	
 	CreateGuild: (player: Player, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly") -> string?,
 	DeleteGuild: (player: Player, guildId: string) -> boolean,
-	ModifyGuild: (guildId: string, player: Player, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly") -> string?,
+	ModifyGuild: (player: Player, guildId: string, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly") -> string?,
 	TransferOwnership: (currentLeader: Player, newLeader: Player, guildId: string) -> boolean,
 	
 	-- // Guild data operations
