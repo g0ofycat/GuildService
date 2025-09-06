@@ -1,6 +1,16 @@
 # GuildService
 
-GuildService is a module used for creating **'clans / guilds'** inside of Roblox Games. It handles data compression and also serialization of data. The API is quite simple to use and Guilds can also be *'Public'* or *'InviteOnly'*.
+**GuildService** is a Roblox module designed to manage **clans or guilds** within your game.  
+It provides a complete system for creating, modifying, and managing guilds, including handling **data serialization** and **compression** for efficient storage and retrieval.
+
+Guilds can be either **Public**, allowing anyone to join freely, or **InviteOnly**, requiring approval from the guild leader.
+
+The module has a clean API, making it easy to integrate while also providing features like:
+
+- *Membership management*
+- *Join requests*
+- *Guild ownership transfer*
+- *Utility functions* for querying guild information
 
 # How to use
 
