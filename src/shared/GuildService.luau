@@ -33,16 +33,16 @@ local AllGuildIds = DataStoreService:GetDataStore("AllGuildIds") -- // Holds the
 
 -- CreateGuild(): Creates a new guild
 -- @param player: The player that wants to create it
--- @param guildName: The name of the guild (Less than 50 Characters)
--- @param guildTag: A shortened version of the guild name (Less than 5 Characters)
--- @param description: A short description of the guild (Less than 255 Characters)
+-- @param guildName: The name of the guild
+-- @param guildTag: A shortened version of the guild name
+-- @param description: A short description of the guild
 -- @param guildType: "Public" | "InviteOnly"
 -- @return string?: The guild ID
 function GuildService.CreateGuild(player: Player, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly"): string?
 	assert(player and player.UserId, "Invalid player")
-	assert(#guildName > 0 and #guildName <= 50, "Guild name must be 1-50 characters")
-	assert(#guildTag > 0 and #guildTag <= 5, "Guild tag must be 1-5 characters")
-	assert(#description <= 255, "Description must be 0-255 characters")
+	assert(#guildName > 0 and #guildName <= Settings.NAME_CHARACTER_LIMIT, `Guild name must be 1-{Settings.NAME_CHARACTER_LIMIT} characters`)
+	assert(#guildTag > 0 and #guildTag <= Settings.TAG_CHARACTER_LIMIT, `Guild tag must be 1-{Settings.TAG_CHARACTER_LIMIT} characters`)
+	assert(#description <= Settings.DESCRIPTION_CHARACTER_LIMIT, `Description must be 0-{Settings.DESCRIPTION_CHARACTER_LIMIT} characters`)
 
 	local existingGuildId, existingGuild = GuildService.GetPlayerGuild(player)
 
@@ -87,7 +87,7 @@ function GuildService.CreateGuild(player: Player, guildName: string, guildTag: s
 	end
 
 	local success, err = pcall(function()
-		AllGuildIds:UpdateAsync("AllGuildIds", function(current)
+		AllGuildIds:UpdateAsync("GuildIdList", function(current)
 			current = current or {}
 
 			for _, id in ipairs(current) do
@@ -117,16 +117,16 @@ end
 -- ModifyGuild(): Modifies a created guild
 -- @param player: The player that wants to modify it
 -- @param guildId: The guild ID
--- @param guildName: The name of the guild (Less than 50 Characters)
--- @param guildTag: A shortened version of the guild name (Less than 5 Characters)
--- @param description: A short description of the guild (Less than 255 Characters)
+-- @param guildName: The name of the guild
+-- @param guildTag: A shortened version of the guild name
+-- @param description: A short description of the guild
 -- @param guildType: "Public" | "InviteOnly"
 -- @return string?: The guild ID
 function GuildService.ModifyGuild(player: Player, guildId: string, guildName: string, guildTag: string, description: string, guildType: "Public" | "InviteOnly"): string?
 	assert(player and player.UserId, "Invalid player")
-	assert(#guildName > 0 and #guildName <= 50, "Guild name must be 1-50 characters")
-	assert(#guildTag > 0 and #guildTag <= 5, "Guild tag must be 1-5 characters")
-	assert(#description <= 255, "Description must be 0-255 characters")
+	assert(#guildName > 0 and #guildName <= Settings.NAME_CHARACTER_LIMIT, `Guild name must be 1-{Settings.NAME_CHARACTER_LIMIT} characters`)
+	assert(#guildTag > 0 and #guildTag <= Settings.TAG_CHARACTER_LIMIT, `Guild tag must be 1-{Settings.TAG_CHARACTER_LIMIT} characters`)
+	assert(#description <= Settings.DESCRIPTION_CHARACTER_LIMIT, `Description must be 0-{Settings.DESCRIPTION_CHARACTER_LIMIT} characters`)
 
 	local existingGuild = GuildService.GetOrLoadGuild(guildId)
 
@@ -195,7 +195,7 @@ function GuildService.DeleteGuild(player: Player, guildId: string): boolean
 	end
 
 	local updateSuccess, updateErr = pcall(function()
-		AllGuildIds:UpdateAsync("AllGuildIds", function(current)
+		AllGuildIds:UpdateAsync("GuildIdList", function(current)
 			current = current or {}
 			
 			for i = #current, 1, -1 do
@@ -308,7 +308,7 @@ function GuildService.GetPlayerGuild(player: Player): (string?, Types.GuildData?
 	end
 
 	local success, idList = pcall(function()
-		return AllGuildIds:GetAsync("AllGuildIds")
+		return AllGuildIds:GetAsync("GuildIdList")
 	end)
 
 	if success and type(idList) == "table" then
@@ -391,7 +391,7 @@ end
 -- @return boolean: If it has succeeded or not
 function GuildService.LoadAllGuilds(): boolean
 	local success, idList = pcall(function()
-		return AllGuildIds:GetAsync("AllGuildIds")
+		return AllGuildIds:GetAsync("GuildIdList")
 	end)
 
 	if not success then
