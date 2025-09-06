@@ -1,6 +1,12 @@
 {
   "name": "project",
   "tree": {
-    "$className": "DataModel"
+    "$className": "DataModel",
+    
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    }
   }
 }

@@ -1,22 +1,22 @@
 --!strict
 
---=======================
+-- =======================
 -- // IMPORTS & MAIN
---=======================
+-- =======================
 
 local Types = require(script.Parent.Parent.Misc.Types)
 
 local Base64 = {} :: Types.Base64
 
---=======================
+-- =======================
 -- // VARIABLES
---=======================
+-- =======================
 
 Base64.Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
---=======================
+-- =======================
 -- // PUBLIC API
---=======================
+-- =======================
 
 -- Encode(): Encodes a string to Base64 for serilization
 -- @param input: The string to convert

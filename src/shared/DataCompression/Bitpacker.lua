@@ -4,9 +4,9 @@ local Types = require(script.Parent.Parent.Misc.Types)
 
 local Bitpacker = {} :: Types.Bitpacker
 
---=======================
+-- =======================
 -- // PRIVATE API
---=======================
+-- =======================
 
 function bufferSize(guild: Types.GuildData): number
 	local size = 0
@@ -24,9 +24,9 @@ function bufferSize(guild: Types.GuildData): number
 	return size
 end
 
---=======================
+-- =======================
 -- // PUBLIC API
---=======================
+-- =======================
 
 -- packGuildData(): Packs the guild table for data compression
 -- @param guild: The guild table
